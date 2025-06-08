@@ -1,10 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>János Razel</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Base styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f8fb;
+      color: #222;
+    }
+
+    header {
+      background-color: #2e7d32; /* green-blue tone */
+      color: white;
+      padding: 1rem 2rem;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      padding: 0;
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    nav a:hover, nav a.active {
+      background-color: #1b5e20;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #e0f2f1;
+      font-size: 0.9rem;
+    }
+
+    a {
+      color: #007acc;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -28,12 +93,7 @@
     <section id="projects">
       <h2>Research Projects</h2>
       <ul>
-        <!--
-        <li><a href="projects/project1.html">Project 1 Title</a> - One-line description</li>
-        <li><a href="projects/project2.html">Project 2 Title</a> - One-line description</li> 
-        -->
-        <!-- Add more projects here -->
-
+        <!-- Projects go here -->
       </ul>
     </section>
 
@@ -52,5 +112,29 @@
   <footer>
     <p>&copy; 2025 János Razel. All rights reserved.</p>
   </footer>
+
+  <script>
+    const sections = document.querySelectorAll('main section');
+    const navLinks = document.querySelectorAll('nav a');
+
+    function activateSection(id) {
+      sections.forEach(section => {
+        section.classList.toggle('active', section.id === id);
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      });
+    }
+
+    function handleHashChange() {
+      const hash = window.location.hash.slice(1) || 'about';
+      activateSection(hash);
+    }
+
+    // Initial activation
+    window.addEventListener('DOMContentLoaded', handleHashChange);
+    // On hash change
+    window.addEventListener('hashchange', handleHashChange);
+  </script>
 </body>
 </html>
